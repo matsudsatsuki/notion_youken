@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_feedback import streamlit_feedback
 from notion_client import Client
 import datetime
 from openai import OpenAI
