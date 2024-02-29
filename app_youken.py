@@ -2,12 +2,18 @@ import streamlit as st
 from notion_client import Client
 import datetime
 from openai import OpenAI
-import time
-# client = OpenAI(api_key="k-ux3nD3j3Hyv75CpyT41iT3BlbkFJFUYmOspxdOvyzFAXrYK7")
+from dotenv import load_dotenv
+import os
 
-# 本番環境ではこの方法は推奨されません。セキュリティのために環境変数や安全なストレージ方法を検討してください。
-USERNAME = "a"
-PASSWORD = "a"
+# 環境変数をロード
+load_dotenv()
+
+# 環境変数から情報を取得
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
+NOTION_API_KEY = os.getenv("NOTION_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 
 # スタイルのカスタマイズ
 st.markdown(""" 
@@ -83,7 +89,7 @@ if st.session_state['authenticated']:
 
 
     # Notion APIクライアントを初期化
-    notion = Client(auth="secret_Br4zDnItaFNJ1SzXN98Q4AaNghLDMbXbEL9YCJrCV69")
+    notion = Client(auth=NOTION_API_KEY)
 
     # アプリケーションのタイトル設定
     st.title("要件定義書作成フォーム")
@@ -221,7 +227,7 @@ if st.session_state['authenticated']:
        # GPTのAPIキーを設定
     def generate_proposal_content(form_data):
         
-        client = OpenAI(api_key="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")
+        client = OpenAI(api_key="OPENAI_API_KEY")
         # フォームデータをテキストに変換
         form_data_text = "\n".join([f"{key}: {value}" for key, value in form_data.items()])
 
