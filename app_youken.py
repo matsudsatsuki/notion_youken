@@ -9,11 +9,10 @@ import os
 load_dotenv()
 
 # 環境変数から情報を取得
-USERNAME = os.getenv("USERNAME")
-PASSWORD = os.getenv("PASSWORD")
-NOTION_API_KEY = os.getenv("NOTION_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
+USERNAME = st.secrets["username"]
+PASSWORD = st.secrets["password"]
+NOTION_API_KEY = st.secrets["notion_api_key"]
+OPENAI_API_KEY = st.secrets["openai_api_key"]
 
 # スタイルのカスタマイズ
 st.markdown(""" 
@@ -223,7 +222,11 @@ if st.session_state['authenticated']:
                 # create_proposal_document()
                 st.session_state.proposal_generated = True
                 # st.rerun()
-        
+        # テキスト用のスペースを作成
+        if st.session_state.proposal_generated:
+            st.markdown("## 提案書ドラフト")
+            st.write("提案書のドラフトがGPT-3によって生成されます。")
+            
        # GPTのAPIキーを設定
     def generate_proposal_content(form_data):
         
