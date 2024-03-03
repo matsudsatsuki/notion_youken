@@ -91,7 +91,7 @@ if st.session_state['authenticated']:
     notion = Client(auth=NOTION_API_KEY)
 
     # アプリケーションのタイトル設定
-    st.title("要件定義書作成フォーム")
+    st.title("AI要件ガイド🤖")
 
     # プログレスバーの初期化
     progress_bar = st.progress(0)
